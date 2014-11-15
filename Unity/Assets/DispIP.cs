@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class DispIP : MonoBehaviour {
 	public void Awake () {
-		GetComponent<Text> ().text = "IP: " + (string) Network.player.externalIP;
+		Debug.Log (Network.player.externalIP);
+		Debug.Log (Network.player);
+		GetComponent<Text> ().text = Network.player.externalIP;
 	}
 }

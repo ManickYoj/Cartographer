@@ -27,7 +27,7 @@ public class NetworkManager : MonoBehaviour {
 
 		// Create Server
 		Network.InitializeServer(maxPlayers, hostPort, natPunchthrough);
-
+		//Join ();
 		UpdateConnectionStatus ();
 	}
 
