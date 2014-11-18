@@ -1,22 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class NetworkManager : MonoBehaviour {
-	public string hostIP = "127.0.0.1";	
+	public Text hostIP;
 	public int hostPort = 25001;
 
 	public GameObject preconnectionMenu;
 	public GameObject postconnectionMenu;
 
-
 	void Start () {
 		// Set up menus
 		preconnectionMenu.SetActive (true);
 		postconnectionMenu.SetActive (false);
+		hostIP.text = Network.player.ipAddress;
 	}
 
 	public void Join() {
-		Network.Connect (hostIP, hostPort);
+		Debug.Log ("Attempting to join server at " + hostIP.text);
+		Network.Connect (hostIP.text, hostPort);
 		UpdateConnectionStatus ();
 	}
 
@@ -27,7 +29,6 @@ public class NetworkManager : MonoBehaviour {
 
 		// Create Server
 		Network.InitializeServer(maxPlayers, hostPort, natPunchthrough);
-		//Join ();
 		UpdateConnectionStatus ();
 	}
 
