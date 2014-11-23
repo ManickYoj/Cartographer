@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\InventoryVars.cs" />
      <Compile Include="Assets\Resources\Scripts\DispIP.cs" />
      <Compile Include="Assets\Resources\Scripts\Inventory.cs" />
      <Compile Include="Assets\Resources\Scripts\InventoryGUIController.cs" />

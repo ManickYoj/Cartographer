@@ -22,7 +22,7 @@ public class Inventory : MonoBehaviour {
 		RectTransform inventoryGUI = (RectTransform) Instantiate (inventoryGUIPrefab);
 		inventoryGUI.SetParent(GameObject.FindGameObjectWithTag ("Primary Canvas").transform, false);
 		inventoryGUIScript = inventoryGUI.GetComponent<InventoryGUIController> ();
-		inventoryGUIScript.Initilize(columns, rows);
+		inventoryGUIScript.Initilize(this);
 	}
 
 
