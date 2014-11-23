@@ -11,13 +11,18 @@ public class Inventory : MonoBehaviour {
 	public int rows;
 
 	private Item[] slots;
-	private RectTransform inventoryGUI;
+	private InventoryGUIController inventoryGUIScript;
 
 	
 	public void Start() {
+		// Initilize class variables
 		this.slots = new Item [columns * rows];
-		inventoryGUI = (RectTransform) Instantiate (inventoryGUIPrefab);
+
+		// Create & initilize associated GUI element
+		RectTransform inventoryGUI = (RectTransform) Instantiate (inventoryGUIPrefab);
 		inventoryGUI.SetParent(GameObject.FindGameObjectWithTag ("Primary Canvas").transform, false);
+		inventoryGUIScript = inventoryGUI.GetComponent<InventoryGUIController> ();
+		inventoryGUIScript.Initilize(columns, rows);
 	}
 
 
