@@ -8,8 +8,14 @@ public class InventoryGUIController : MonoBehaviour {
 
 	private RectTransform[] slotGUIs;
 	private Inventory inv;
+	static InventoryVars invVars;
+
+	public void Start() {
+		if (!invVars) invVars = GameObject.FindGameObjectWithTag("Global Vars").GetComponent<InventoryVars>();
+	}
 
 	public void Initilize (Inventory inv) {
+		this.inv = inv;
 
 		// Calculate size for self and resize accordingly
 		Vector2 s = slotGUIPrefab.rect.size;
@@ -27,7 +33,7 @@ public class InventoryGUIController : MonoBehaviour {
 		}
 	}
 
-	public void select (int i) {
-		Debug.Log (i);
+	public void select (int index) {
+		invVars.selectItem (inv, index);
 	}
 }

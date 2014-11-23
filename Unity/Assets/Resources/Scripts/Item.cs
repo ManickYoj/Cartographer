@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Item : MonoBehaviour {
 	//General Data
-	public Sprite icon;
+	public Image icon;
 	public int baseValue;
 
 	// Production Data

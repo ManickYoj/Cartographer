@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 
 public class Inventory : MonoBehaviour {
-	public RectTransform inventoryGUIPrefab;
 	public int columns;
 	public int rows;
 
@@ -19,12 +18,16 @@ public class Inventory : MonoBehaviour {
 		this.slots = new Item [columns * rows];
 
 		// Create & initilize associated GUI element
-		RectTransform inventoryGUI = (RectTransform) Instantiate (inventoryGUIPrefab);
-		inventoryGUI.SetParent(GameObject.FindGameObjectWithTag ("Primary Canvas").transform, false);
+		GameObject inventoryGUI = (GameObject) Instantiate (Resources.Load ("Prefabs/GUI/Inventory GUI"));
+		inventoryGUI.transform.SetParent(GameObject.FindGameObjectWithTag ("Primary Canvas").transform, false);
 		inventoryGUIScript = inventoryGUI.GetComponent<InventoryGUIController> ();
 		inventoryGUIScript.Initilize(this);
 	}
 
+
+	public Item peek (int index) {
+		return slots [index];
+	}
 
 	/// <summary> Adds an item to the inventory. </summary>
 	/// <param name="addition">The item to add. </param>

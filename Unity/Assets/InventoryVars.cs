@@ -3,20 +3,17 @@ using System.Collections;
 
 public class InventoryVars : MonoBehaviour {
 	
-	private Inventory inv = null;
-	private int invIndex;
+	private Item selected = null;
 
 
-	public void selectItem (Inventory inv, int invIndex) {
-		this.inv = inv;
-		this.invIndex = invIndex;
+	public void selectItem (Inventory inv, int index) {
+		Item temp = inv.remove (index);
+		inv.add (selected, index);
+		selected = temp;
+		Debug.Log (selected.name);
 	}
 
-	public void deselectItem () {
-		inv = null;
-	}
-
-	public void depositItem (Inventory targetInv, int targetInd) {
-		targetInv.add (inv.remove (invIndex), targetInd);
+	public void clearSelection () {
+		selected = null;
 	}
 }

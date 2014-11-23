@@ -1608,7 +1608,7 @@ GameObject:
   - 114: {fileID: 289037455}
   m_Layer: 0
   m_Name: Globals Manager
-  m_TagString: Untagged
+  m_TagString: Global Vars
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4594,9 +4594,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9c6dbd9b83f0174ead080873685e070, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryGUIPrefab: {fileID: 22400000, guid: d4cf807ac836f6844850c645df0acf52, type: 2}
   columns: 5
   rows: 4
+  coal: {fileID: 11400000, guid: 6297161985392e241bf434641be77436, type: 2}
 --- !u!148 &1031919479
 NetworkView:
   m_ObjectHideFlags: 0
