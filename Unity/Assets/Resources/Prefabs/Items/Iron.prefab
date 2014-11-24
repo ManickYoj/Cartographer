@@ -39,7 +39,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dfe311c1f9659741af3193feb187cdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: fc88aa37a2b56784fb57d5f7f59aa7bc, type: 3}
   baseValue: 6
   laborCost: 6
   reagents: []

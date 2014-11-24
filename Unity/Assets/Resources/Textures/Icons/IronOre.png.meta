@@ -1,9 +1,8 @@
 fileFormatVersion: 2
-guid: bceb98ba9c864044f8cfb4de1da4814e
+guid: fc88aa37a2b56784fb57d5f7f59aa7bc
 TextureImporter:
   fileIDToRecycleName:
-    21300000: coal
-    21300002: Coal
+    21300000: IronOre
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -27,9 +26,9 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: -1
-    aniso: 1
+    aniso: -1
     mipBias: -1
-    wrapMode: 1
+    wrapMode: -1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50

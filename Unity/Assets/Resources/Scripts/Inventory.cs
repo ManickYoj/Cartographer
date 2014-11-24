@@ -10,12 +10,14 @@ public class Inventory : MonoBehaviour {
 	public int rows;
 	public Item[] startItems;
 
-	static Item noneType = Resources.Load<Item>("Prefabs/Items/None");
+	static Item noneType;
 	public event InvUpdate invUpdate;
 	private Item[] slots;
 	private InventoryGUIController inventoryGUIScript;
 	
 	public void Start() {
+		if (!noneType) noneType = Resources.Load<Item>("Prefabs/Items/None");
+
 		// Initilize class variables
 		this.slots = new Item [columns * rows];
 		for (int i = 0; i < slots.Length; i++) {
@@ -28,16 +30,23 @@ public class Inventory : MonoBehaviour {
 		inventoryGUI.transform.SetParent(GameObject.FindGameObjectWithTag ("Primary Canvas").transform, false);
 		inventoryGUIScript = inventoryGUI.GetComponent<InventoryGUIController> ();
 		inventoryGUIScript.Initilize(this);
+		deactivateGUI ();
 	}
 
-	public void GUIToggle(bool on) { 
-		if (on) {
-			inventoryGUIScript.gameObject.SetActive(true);
-			inventoryGUIScript.updateAllIndicies();
-		}
-		else inventoryGUIScript.gameObject.SetActive(false);
+	public void toggleGUI(Vector2 location) { 
+		Debug.Log ("!");
+		if (inventoryGUIScript.gameObject.activeSelf) deactivateGUI();
+		else activateGUI(location);
 	}
 
+	private void activateGUI(Vector2 location) {
+		Debug.Log ("HERE!");
+		inventoryGUIScript.gameObject.SetActive(true);
+		inventoryGUIScript.gameObject.GetComponent<RectTransform> ().position = location;
+		inventoryGUIScript.updateAllIndicies();
+	}
+
+	private void deactivateGUI() { inventoryGUIScript.gameObject.SetActive (false); }
 
 	public Item peek (int index) { return slots [index]; }
 

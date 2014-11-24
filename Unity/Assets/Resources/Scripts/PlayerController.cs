@@ -1,12 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-	
-	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -14,6 +10,10 @@ public class PlayerController : MonoBehaviour {
 			Vector3 moveDir = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
 			float speed = 5;
 			transform.Translate(speed * moveDir * Time.deltaTime);
+
+			if (Input.GetButtonDown("Inventory")){
+				GetComponent<Inventory>().toggleGUI(Input.mousePosition);
+			}
 		}
 	}
 
