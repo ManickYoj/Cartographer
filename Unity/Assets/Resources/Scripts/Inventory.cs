@@ -3,13 +3,15 @@ using UnityEditor;
 using System.Collections;
 using UnityEngine.UI;
 
-
+public delegate void InvUpdate(int index);
 
 public class Inventory : MonoBehaviour {
 	public int columns;
 	public int rows;
 	public Item[] startItems;
 
+	static Item noneType = Resources.Load<Item>("Prefabs/Items/None");
+	public event InvUpdate invUpdate;
 	private Item[] slots;
 	private InventoryGUIController inventoryGUIScript;
 	
@@ -18,7 +20,7 @@ public class Inventory : MonoBehaviour {
 		this.slots = new Item [columns * rows];
 		for (int i = 0; i < slots.Length; i++) {
 			if ( i < startItems.Length) slots[i] = startItems[i];
-			else break;
+			else slots[i] = noneType;
 		}
 
 		// Create & initilize associated GUI element
@@ -28,10 +30,16 @@ public class Inventory : MonoBehaviour {
 		inventoryGUIScript.Initilize(this);
 	}
 
-
-	public Item peek (int index) {
-		return slots [index];
+	public void GUIToggle(bool on) { 
+		if (on) {
+			inventoryGUIScript.gameObject.SetActive(true);
+			inventoryGUIScript.updateAllIndicies();
+		}
+		else inventoryGUIScript.gameObject.SetActive(false);
 	}
+
+
+	public Item peek (int index) { return slots [index]; }
 
 	/// <summary> Adds an item to the inventory. </summary>
 	/// <param name="addition">The item to add. </param>
@@ -40,7 +48,8 @@ public class Inventory : MonoBehaviour {
 	public bool add(Item addition, int index) {
 		if (index >= 0 && index < slots.Length) {
 			slots[index] = addition;
-			if (addition) return true;
+			invUpdate(index);
+			return true;
 		}
 
 		return false;
@@ -54,11 +63,10 @@ public class Inventory : MonoBehaviour {
 	/// <param name="index">The index from which to remove the item</param>
 	/// <returns>The item at the index, if it exists. Null otherwise. </returns>
 	public Item remove (int index) {
-		if (slots [index] != null) {
-			Item temp = slots [index];
-			slots [index] = null;
-			return temp;
-		} else return null;
+		Item temp = slots [index];
+		slots [index] = noneType;
+		invUpdate(index);
+		return temp;
 	}
 
 	public Item remove (int x, int y) { return remove(index(x, y)); } // Removes item from inventory

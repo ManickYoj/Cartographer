@@ -3,17 +3,16 @@ using System.Collections;
 
 public class InventoryVars : MonoBehaviour {
 	
-	private Item selected = null;
+	static Item selected = Resources.Load<Item> ("Prefabs/Items/None");
 
 
 	public void selectItem (Inventory inv, int index) {
 		Item temp = inv.remove (index);
 		inv.add (selected, index);
 		selected = temp;
-		Debug.Log (selected.name);
 	}
 
 	public void clearSelection () {
-		selected = null;
+		selected = Resources.Load<Item> ("Prefabs/Items/None");
 	}
 }

@@ -46,10 +46,10 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\InventoryVars.cs" />
      <Compile Include="Assets\Resources\Scripts\DispIP.cs" />
      <Compile Include="Assets\Resources\Scripts\Inventory.cs" />
      <Compile Include="Assets\Resources\Scripts\InventoryGUIController.cs" />
+     <Compile Include="Assets\Resources\Scripts\InventoryVars.cs" />
      <Compile Include="Assets\Resources\Scripts\Item.cs" />
      <Compile Include="Assets\Resources\Scripts\NetworkManager.cs" />
      <Compile Include="Assets\Resources\Scripts\PlayerController.cs" />

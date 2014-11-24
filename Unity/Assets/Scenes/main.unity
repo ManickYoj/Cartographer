@@ -4595,7 +4595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   columns: 5
-  rows: 4
+  rows: 3
   startItems:
   - {fileID: 11400000, guid: 6297161985392e241bf434641be77436, type: 2}
   - {fileID: 11400000, guid: 6297161985392e241bf434641be77436, type: 2}
