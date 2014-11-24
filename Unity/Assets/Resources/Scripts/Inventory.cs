@@ -8,14 +8,18 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour {
 	public int columns;
 	public int rows;
+	public Item[] startItems;
 
 	private Item[] slots;
 	private InventoryGUIController inventoryGUIScript;
-
 	
 	public void Start() {
 		// Initilize class variables
 		this.slots = new Item [columns * rows];
+		for (int i = 0; i < slots.Length; i++) {
+			if ( i < startItems.Length) slots[i] = startItems[i];
+			else break;
+		}
 
 		// Create & initilize associated GUI element
 		GameObject inventoryGUI = (GameObject) Instantiate (Resources.Load ("Prefabs/GUI/Inventory GUI"));

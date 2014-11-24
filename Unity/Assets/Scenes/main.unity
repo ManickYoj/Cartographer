@@ -4596,7 +4596,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   columns: 5
   rows: 4
-  coal: {fileID: 11400000, guid: 6297161985392e241bf434641be77436, type: 2}
+  startItems:
+  - {fileID: 11400000, guid: 6297161985392e241bf434641be77436, type: 2}
+  - {fileID: 11400000, guid: 6297161985392e241bf434641be77436, type: 2}
+  - {fileID: 11400000, guid: 10f6ade312ad09841993b7e5b93778f2, type: 2}
 --- !u!148 &1031919479
 NetworkView:
   m_ObjectHideFlags: 0

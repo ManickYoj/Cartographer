@@ -4,7 +4,7 @@ using System.Collections;
 
 public class Item : MonoBehaviour {
 	//General Data
-	public Image icon;
+	public Sprite icon;
 	public int baseValue;
 
 	// Production Data

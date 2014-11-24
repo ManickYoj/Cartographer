@@ -3,9 +3,9 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class InventoryGUIController : MonoBehaviour {
-	public RectTransform slotGUIPrefab;
 	public int cellPadding;
 
+	private RectTransform slotGUIPrefab = Resources.Load<GameObject>("Prefabs/GUI/Inventory Slot").GetComponent<RectTransform>();
 	private RectTransform[] slotGUIs;
 	private Inventory inv;
 	static InventoryVars invVars;
@@ -28,8 +28,13 @@ public class InventoryGUIController : MonoBehaviour {
 		for (int i = 0; i < inv.columns * inv.rows; i++) {
 			slotGUIs[i] = (RectTransform) Instantiate(slotGUIPrefab);
 			slotGUIs[i].SetParent(transform);
+
 			int value = i;
-			slotGUIs[i].GetComponent<Button>().onClick.AddListener(() => {select(value);});
+			Button button = slotGUIs[i].GetComponent<Button>();
+			if (inv.peek(i) && inv.peek(i).icon) {
+				button.GetComponent<Image>().sprite = inv.peek(i).icon;
+			}
+			button.onClick.AddListener(() => {select(value);});
 		}
 	}
 
