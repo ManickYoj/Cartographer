@@ -3,7 +3,9 @@ using System.Collections;
 
 public class InventoryVars : MonoBehaviour {
 	
-	static Item selected = Resources.Load<Item> ("Prefabs/Items/None");
+	static Item selected;
+
+	void Start() { clearSelection (); }
 
 
 	public void selectItem (Inventory inv, int index) {

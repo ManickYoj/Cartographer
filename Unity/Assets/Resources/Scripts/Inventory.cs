@@ -34,13 +34,11 @@ public class Inventory : MonoBehaviour {
 	}
 
 	public void toggleGUI(Vector2 location) { 
-		Debug.Log ("!");
 		if (inventoryGUIScript.gameObject.activeSelf) deactivateGUI();
 		else activateGUI(location);
 	}
 
 	private void activateGUI(Vector2 location) {
-		Debug.Log ("HERE!");
 		inventoryGUIScript.gameObject.SetActive(true);
 		inventoryGUIScript.gameObject.GetComponent<RectTransform> ().position = location;
 		inventoryGUIScript.updateAllIndicies();

@@ -40,7 +40,7 @@ public class InventoryGUIController : MonoBehaviour {
 		for (int i = 0; i < inv.columns * inv.rows; i++) { updateIndex(i); }
 	}
 
-	private void updateIndex(int index) {
+	void updateIndex(int index) {
 		slotGUIs[index].GetComponent<Image>().sprite = inv.peek(index).icon;
 	}
 }
