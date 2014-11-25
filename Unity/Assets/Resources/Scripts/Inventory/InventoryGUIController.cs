@@ -8,8 +8,9 @@ public class InventoryGUIController : MonoBehaviour {
 	private Button[] slotGUIs;
 	private Inventory inv;
 	static InventoryVars invVars;
+	WindowThis windowScript;
 
-	public void Start() {
+	void Start() {
 		if (!invVars) invVars = GameObject.FindGameObjectWithTag("Global Vars").GetComponent<InventoryVars>();
 	}
 
@@ -34,6 +35,15 @@ public class InventoryGUIController : MonoBehaviour {
 			slotGUIs[i].onClick.AddListener(() => { invVars.selectItem (inv, value); });
 			updateIndex(i);
 		}
+
+		gameObject.AddComponent<WindowThis> ();
+		windowScript = gameObject.GetComponent<WindowThis> ();
+	}
+
+	public void toggleGUI (Vector2 newLocation) {
+		transform.position = newLocation;
+		windowScript.toggleWindow ();
+		updateAllIndicies();
 	}
 
 	public void updateAllIndicies () {

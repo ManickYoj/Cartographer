@@ -30,21 +30,10 @@ public class Inventory : MonoBehaviour {
 		inventoryGUI.transform.SetParent(GameObject.FindGameObjectWithTag ("Primary Canvas").transform, false);
 		inventoryGUIScript = inventoryGUI.GetComponent<InventoryGUIController> ();
 		inventoryGUIScript.Initilize(this);
-		deactivateGUI ();
+		toggleGUI (Vector2.zero);
 	}
 
-	public void toggleGUI(Vector2 location) { 
-		if (inventoryGUIScript.gameObject.activeSelf) deactivateGUI();
-		else activateGUI(location);
-	}
-
-	private void activateGUI(Vector2 location) {
-		inventoryGUIScript.gameObject.SetActive(true);
-		inventoryGUIScript.gameObject.GetComponent<RectTransform> ().position = location;
-		inventoryGUIScript.updateAllIndicies();
-	}
-
-	private void deactivateGUI() { inventoryGUIScript.gameObject.SetActive (false); }
+	public void toggleGUI(Vector2 location) { inventoryGUIScript.toggleGUI (location); }
 
 	public Item peek (int index) { return slots [index]; }
 

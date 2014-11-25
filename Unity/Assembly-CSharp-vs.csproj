@@ -47,12 +47,14 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Resources\Scripts\DispIP.cs" />
-     <Compile Include="Assets\Resources\Scripts\Inventory.cs" />
-     <Compile Include="Assets\Resources\Scripts\InventoryGUIController.cs" />
-     <Compile Include="Assets\Resources\Scripts\InventoryVars.cs" />
-     <Compile Include="Assets\Resources\Scripts\Item.cs" />
+     <Compile Include="Assets\Resources\Scripts\Inventory\Inventory.cs" />
+     <Compile Include="Assets\Resources\Scripts\Inventory\InventoryGUIController.cs" />
+     <Compile Include="Assets\Resources\Scripts\Inventory\InventoryVars.cs" />
+     <Compile Include="Assets\Resources\Scripts\Inventory\Item.cs" />
      <Compile Include="Assets\Resources\Scripts\NetworkManager.cs" />
      <Compile Include="Assets\Resources\Scripts\PlayerController.cs" />
+     <Compile Include="Assets\Resources\Scripts\WindowScript.cs" />
+     <Compile Include="Assets\Resources\Scripts\WindowThis.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
  </Reference>
