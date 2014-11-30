@@ -28,6 +28,7 @@ public class Inventory : MonoBehaviour {
 		// Create & initilize associated GUI element
 		GameObject inventoryGUI = (GameObject) Instantiate (Resources.Load ("Prefabs/GUI/Inventory GUI"));
 		inventoryGUI.transform.SetParent(GameObject.FindGameObjectWithTag ("Primary Canvas").transform, false);
+		inventoryGUI.name = gameObject.name + " Inventory";
 		inventoryGUIScript = inventoryGUI.GetComponent<InventoryGUIController> ();
 		inventoryGUIScript.Initilize(this);
 		toggleGUI (Vector2.zero);
