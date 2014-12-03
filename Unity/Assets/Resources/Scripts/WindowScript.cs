@@ -8,7 +8,7 @@ public class WindowScript : MonoBehaviour {
 	Transform contentPane;
 	Text handleText;
 
-	void Awake () {
+	void Start () {
 		selfTransform = gameObject.GetComponent<RectTransform> ();
 		contentPane = transform.FindChild ("Content Pane");
 		handleText = transform.FindChild ("Handle/Window Name").GetComponent<Text>();

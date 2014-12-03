@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour {
 			transform.Translate(speed * moveDir * Time.deltaTime);
 
 			if (Input.GetButtonDown("Inventory")){
-				GetComponent<Inventory>().toggleGUI(Input.mousePosition);
+				GetComponent<Inventory>().ToggleGUI();
 			}
 		}
 	}

@@ -16,7 +16,7 @@ public class InventoryGUIController : MonoBehaviour {
 
 	public void Initilize (Inventory inv) {
 		this.inv = inv;
-		inv.invUpdate += updateIndex;
+		inv.onInvUpdate += updateIndex;
 		Button slotGUIPrefab = Resources.Load<Button>("Prefabs/GUI/Inventory Slot");
 
 		// Calculate size for self and resize accordingly

@@ -11,9 +11,10 @@ public class Inventory : MonoBehaviour {
 	public Item[] startItems;
 
 	static Item noneType;
-	public event InvUpdate invUpdate;
+	public event InvUpdate onInvUpdate;
 	private Item[] slots;
-	private InventoryGUIController inventoryGUIScript;
+	//private InventoryGUIController inventoryGUIScript;
+	InventoryWindow  invWin;
 	
 	public void Start() {
 		if (!noneType) noneType = Resources.Load<Item>("Prefabs/Items/None");
@@ -26,15 +27,17 @@ public class Inventory : MonoBehaviour {
 		}
 
 		// Create & initilize associated GUI element
-		GameObject inventoryGUI = (GameObject) Instantiate (Resources.Load ("Prefabs/GUI/Inventory GUI"));
+		GameObject inventoryGUI = (GameObject) Instantiate (Resources.Load ("Prefabs/GUI/Inventory Window"));
 		inventoryGUI.transform.SetParent(GameObject.FindGameObjectWithTag ("Primary Canvas").transform, false);
-		inventoryGUI.name = gameObject.name + " Inventory";
-		inventoryGUIScript = inventoryGUI.GetComponent<InventoryGUIController> ();
-		inventoryGUIScript.Initilize(this);
-		toggleGUI (Vector2.zero);
+		invWin = inventoryGUI.GetComponent<InventoryWindow> ();
+		invWin.Init(this);
+		ToggleGUI ();
 	}
 
-	public void toggleGUI(Vector2 location) { inventoryGUIScript.toggleGUI (location); }
+	public void ToggleGUI() {
+		invWin.ToggleGUI ();
+		if (invWin.gameObject.activeSelf) invWin.Reposition (Input.mousePosition);
+	}
 
 	public Item peek (int index) { return slots [index]; }
 
@@ -45,7 +48,7 @@ public class Inventory : MonoBehaviour {
 	public bool add(Item addition, int index) {
 		if (index >= 0 && index < slots.Length) {
 			slots[index] = addition;
-			invUpdate(index);
+			onInvUpdate(index);
 			return true;
 		}
 
@@ -62,7 +65,7 @@ public class Inventory : MonoBehaviour {
 	public Item remove (int index) {
 		Item temp = slots [index];
 		slots [index] = noneType;
-		invUpdate(index);
+		onInvUpdate(index);
 		return temp;
 	}
 
