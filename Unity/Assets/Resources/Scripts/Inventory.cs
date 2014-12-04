@@ -11,11 +11,13 @@ public class Inventory : MonoBehaviour {
 
 	static Item noneType;
 	public event InvUpdate onInvUpdate;
-	private Item[] slots;
+	Item[] slots;
+	NetworkView pNetworkView;
 	InventoryWindow  invWin;
 	
-	public void Start() {
+	void Start() {
 		if (!noneType) noneType = Resources.Load<Item>("Prefabs/Items/None");
+		pNetworkView = GetComponent<NetworkView> ();
 
 		// Initilize class variables
 		this.slots = new Item [columns * rows];
@@ -30,6 +32,12 @@ public class Inventory : MonoBehaviour {
 		invWin = inventoryGUI.GetComponent<InventoryWindow> ();
 		invWin.Init(this);
 		ToggleGUI ();
+	}
+
+	void Update() {
+		if (Input.GetButtonDown("Inventory") && pNetworkView && pNetworkView.isMine){
+			ToggleGUI();
+		}
 	}
 
 	public void ToggleGUI() {
