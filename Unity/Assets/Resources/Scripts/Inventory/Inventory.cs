@@ -13,7 +13,6 @@ public class Inventory : MonoBehaviour {
 	static Item noneType;
 	public event InvUpdate onInvUpdate;
 	private Item[] slots;
-	//private InventoryGUIController inventoryGUIScript;
 	InventoryWindow  invWin;
 	
 	public void Start() {

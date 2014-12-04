@@ -4,42 +4,36 @@ using System.Collections;
 
 
 public class InventoryWindow : MonoBehaviour {
-	// Controller instance variables
+	// Instance and class variables
+	static InventoryVars invVars;
 	Inventory inv;
-	static InventoryVars invVars; //TODO: Clean up this reference perhaps?
+	Button[] slotGUIs;
 
-	// Window instance variables
-	RectTransform selfTransform; // TODO: This may be unnecessary as an instance variable
-	RectTransform contentPane; //TODO: This may be unnecessary as an instance variable
-
-	// Inventory GUI instance variables
-	Button[] slotGUIs; //TODO: This may be unnecessary as an instance variable
-	public int cellPadding; //TODO: This may be unnecessary as an instance variable
-
-	void Start() { invVars = GameObject.FindGameObjectWithTag ("Global Vars").GetComponent<InventoryVars> (); }
+	void Start() { if (!invVars) invVars = GameObject.FindGameObjectWithTag ("Global Vars").GetComponent<InventoryVars> (); }
 
 	public void Init (Inventory associatedInventory) {
 		// Get Instance Variables
 		inv = associatedInventory;
-		selfTransform = gameObject.GetComponent<RectTransform> ();
-		contentPane = transform.FindChild ("Content Pane").GetComponent<RectTransform>();
+
 		Text handleText = transform.FindChild ("Handle/Window Name").GetComponent<Text>();
 		handleText.text = inv.gameObject.name + " Inventory";
 
 		// Register an observer with the inventory
 		inv.onInvUpdate += UpdateIndex;
 
-		createGUI ();
+		CreateGUI ();
 	}
 
-	void createGUI () {
+	void CreateGUI () {
 		// Calculate size for self and resize accordingly
 		Button slotGUIPrefab = Resources.Load<Button>("Prefabs/GUI/Inventory Slot");
 		Vector2 s = slotGUIPrefab.GetComponent<RectTransform>().rect.size;
+		float cellPadding = 4;
 		float w = (s.x + cellPadding) * inv.columns + 2 * cellPadding;
 		float h = (s.y + cellPadding) * inv.rows + 2 * cellPadding;
+		RectTransform contentPane = transform.FindChild ("Content Pane").GetComponent<RectTransform>();
 		contentPane.sizeDelta = new Vector2 (w, h);
-		selfTransform.sizeDelta = contentPane.rect.size + new Vector2(0, 15);
+		gameObject.GetComponent<RectTransform>().sizeDelta = contentPane.rect.size + new Vector2(0, 15);
 
 		// Instantiate slot GUI elements and insert them into self
 		slotGUIs = new Button[inv.columns * inv.rows];
