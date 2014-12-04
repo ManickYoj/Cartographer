@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEditor;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -55,7 +54,6 @@ public class Inventory : MonoBehaviour {
 	}
 
 	// add() overloads for adding without specifying index, and for specifying an x, y in inventory
-	public bool add(Item addition) { return add (addition, ArrayUtility.IndexOf (slots, null)); }
 	public bool add(Item addition, int x, int y) { return add (addition, index (x, y)); }
 
 	/// <summary> Removes an item from the specified index. </summary>
