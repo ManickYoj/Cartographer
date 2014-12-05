@@ -10,6 +10,7 @@ public class NetworkManager : MonoBehaviour {
 	public GameObject postconnectionMenu;
 
 	public GameObject playerPrefab;
+	public GameObject player;
 
 	void Start () {
 		// Set up menus
@@ -38,6 +39,16 @@ public class NetworkManager : MonoBehaviour {
 		CreatePlayer ();
 	}
 
+	void OnDisconnectedFromServer() {
+		Debug.Log ("Disconnected: " + hostIP.text);
+		//Network.DestroyPlayerObjects (player);
+		//Destroy (player);
+
+	}
+
+//	void OnPlayerDisconnected(NetworkPlayer player) {
+//	}
+
 	public void Disconnect() {
 		Network.Disconnect (200);
 
@@ -53,7 +64,7 @@ public class NetworkManager : MonoBehaviour {
 	}
 
 	void CreatePlayer() {
-		GameObject player = (GameObject) Network.Instantiate (playerPrefab, playerPrefab.transform.position, playerPrefab.transform.rotation, 0);
+		player = (GameObject) Network.Instantiate (playerPrefab, playerPrefab.transform.position, playerPrefab.transform.rotation, 0);
 		player.transform.Find ("Camera").gameObject.SetActive(true);
 	}
 }
