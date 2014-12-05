@@ -5,11 +5,8 @@ using System.Collections;
 
 public class InventoryWindow : MonoBehaviour {
 	// Instance and class variables
-	static InventoryVars invVars;
 	Inventory inv;
 	Button[] slotGUIs;
-
-	void Start() { if (!invVars) invVars = GameObject.FindGameObjectWithTag ("Global Vars").GetComponent<InventoryVars> (); }
 
 	public void Init (Inventory associatedInventory) {
 		// Get Instance Variables
@@ -42,7 +39,7 @@ public class InventoryWindow : MonoBehaviour {
 			slotGUIs[i].transform.SetParent(contentPane.transform);
 
 			int value = i;  // A bug occurs if this seemingly useless code does not exist
-			slotGUIs[i].onClick.AddListener(() => { invVars.selectItem (inv, value); });
+			slotGUIs[i].onClick.AddListener(() => { inv.SelectItem (value); });
 			UpdateIndex(i);
 		}
 	}
