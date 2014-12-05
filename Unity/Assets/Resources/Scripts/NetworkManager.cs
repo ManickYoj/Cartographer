@@ -9,6 +9,8 @@ public class NetworkManager : MonoBehaviour {
 	public GameObject preconnectionMenu;
 	public GameObject postconnectionMenu;
 
+	public GameObject playerPrefab;
+
 	void Start () {
 		// Set up menus
 		preconnectionMenu.SetActive (true);
@@ -17,7 +19,6 @@ public class NetworkManager : MonoBehaviour {
 	}
 
 	public void Join() {
-		Debug.Log ("Attempting to join server at " + hostIP.text);
 		Network.Connect (hostIP.text, hostPort);
 		UpdateConnectionStatus ();
 	}
@@ -30,6 +31,11 @@ public class NetworkManager : MonoBehaviour {
 		// Create Server
 		Network.InitializeServer(maxPlayers, hostPort, natPunchthrough);
 		UpdateConnectionStatus ();
+		CreatePlayer ();
+	}
+
+	void OnConnectedToServer() {
+		CreatePlayer ();
 	}
 
 	public void Disconnect() {
@@ -44,5 +50,10 @@ public class NetworkManager : MonoBehaviour {
 		//Swap Menus
 		preconnectionMenu.SetActive (false);
 		postconnectionMenu.SetActive (true);
+	}
+
+	void CreatePlayer() {
+		GameObject player = (GameObject) Network.Instantiate (playerPrefab, playerPrefab.transform.position, playerPrefab.transform.rotation, 0);
+		player.transform.Find ("Camera").gameObject.SetActive(true);
 	}
 }
