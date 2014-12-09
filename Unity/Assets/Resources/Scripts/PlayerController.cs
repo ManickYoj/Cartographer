@@ -12,7 +12,9 @@ public class PlayerController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (pNetworkView.isMine) Move()
+		Vector3 moveDir = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+		float speed = 5;
+		transform.Translate(speed * moveDir * Time.deltaTime);
 	}
 
 //	void Move () {
