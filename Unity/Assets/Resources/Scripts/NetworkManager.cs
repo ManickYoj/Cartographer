@@ -60,6 +60,9 @@ public class NetworkManager : MonoBehaviour {
 	
 	public void Disconnect() {
 		Network.Destroy (player.GetComponent <NetworkView> ().viewID);
+		player.GetComponent<NetworkView> ().RPC ("DestroyPlayer", RPCMode.All, player);
+		Debug.Log ("Hmm...?");
+
 		Network.Disconnect (200);
 		//if (Network.isClient) Network.CloseConnection (Network.connections[0], true);
 
