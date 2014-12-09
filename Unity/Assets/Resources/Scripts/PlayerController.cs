@@ -15,12 +15,12 @@ public class PlayerController : MonoBehaviour {
 		if (pNetworkView.isMine) Move()
 	}
 
-	void Move () {
+//	void Move () {
 		//Vector3 moveDir = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
 		//float speed = 5;
 		//transform.Translate(speed * moveDir * Time.deltaTime);
 
-	}
+//	}
 
 	[RPC]
 	void DestroyPlayer(GameObject player) {

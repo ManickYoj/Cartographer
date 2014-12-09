@@ -5,18 +5,23 @@ using UnityEngine.UI;
 public delegate void InvUpdate(int index);
 
 public class Inventory : MonoBehaviour {
+	static Item selected;
+	static Item noneType;
+	static Inventory lastInventory;
+	static int lastIndex;
+
 	public int columns;
 	public int rows;
 	public Item[] startItems;
 
-	static Item noneType;
 	public event InvUpdate onInvUpdate;
-	Item[] slots;
+	public Item[] slots;
 	NetworkView pNetworkView;
 	InventoryWindow  invWin;
 	
 	void Start() {
 		if (!noneType) noneType = Resources.Load<Item>("Prefabs/Items/None");
+		if (!selected) selected = noneType;
 		pNetworkView = GetComponent<NetworkView> ();
 
 		// Initilize class variables
@@ -35,9 +40,7 @@ public class Inventory : MonoBehaviour {
 	}
 
 	void Update() {
-		if (Input.GetButtonDown("Inventory") && pNetworkView && pNetworkView.isMine){
-			ToggleGUI();
-		}
+		if (Input.GetButtonDown("Inventory") && pNetworkView && pNetworkView.isMine) ToggleGUI();
 	}
 
 	public void ToggleGUI() {
@@ -47,33 +50,25 @@ public class Inventory : MonoBehaviour {
 
 	public Item peek (int index) { return slots [index]; }
 
-	/// <summary> Adds an item to the inventory. </summary>
-	/// <param name="addition">The item to add. </param>
-	/// <param name="index">The index at which to add an item.</param>
-	/// <returns> True if the item was added, false otherwise. </returns>
-	public bool add(Item addition, int index) {
-		if (index >= 0 && index < slots.Length) {
-			slots[index] = addition;
-			onInvUpdate(index);
-			return true;
+	public void SelectItem (int index) {
+		if (selected == noneType) {
+			if (slots[index] != noneType) {
+				selected = slots[index];
+				slots [index] = noneType;
+				lastIndex = index;
+				lastInventory = this;
+			}
+		} else {
+			if (slots[index] == noneType) {
+				slots[index] = selected;
+				selected = noneType;
+			} else {
+				lastInventory.slots [lastIndex] = selected;
+				selected = noneType;
+				onInvUpdate(lastIndex);
+			}
 		}
 
-		return false;
+		onInvUpdate (index);
 	}
-
-	// add() overloads for adding without specifying index, and for specifying an x, y in inventory
-	public bool add(Item addition, int x, int y) { return add (addition, index (x, y)); }
-
-	/// <summary> Removes an item from the specified index. </summary>
-	/// <param name="index">The index from which to remove the item</param>
-	/// <returns>The item at the index, if it exists. Null otherwise. </returns>
-	public Item remove (int index) {
-		Item temp = slots [index];
-		slots [index] = noneType;
-		onInvUpdate(index);
-		return temp;
-	}
-
-	public Item remove (int x, int y) { return remove(index(x, y)); } // Removes item from inventory
-	private int index (int x, int y) { return x + y * columns;  } // Parses (x, y) -> index
 }
