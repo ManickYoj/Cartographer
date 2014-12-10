@@ -6,6 +6,7 @@ public class ItemData : ScriptableObject {
 	//General Data
 	public Sprite icon;
 	public int baseValue;
+	public float bulk;
 
 	//Market Data
 	public float defaultNumberPopMultiplier;
