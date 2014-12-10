@@ -48,6 +48,8 @@
   <ItemGroup>
      <Compile Include="Assets\Resources\Scripts\DispIP.cs" />
      <Compile Include="Assets\Resources\Scripts\Draggable.cs" />
+     <Compile Include="Assets\Resources\Scripts\Editor Scripts\Create Scriptable Objects.cs" />
+     <Compile Include="Assets\Resources\Scripts\Editor Scripts\ItemData.cs" />
      <Compile Include="Assets\Resources\Scripts\Inventory.cs" />
      <Compile Include="Assets\Resources\Scripts\InventoryWindow.cs" />
      <Compile Include="Assets\Resources\Scripts\Item.cs" />
