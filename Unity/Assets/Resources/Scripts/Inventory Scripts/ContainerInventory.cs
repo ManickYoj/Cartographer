@@ -3,13 +3,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public class ContainerInventory : MonoBehaviour, IInventory {
+public class ContainerInventory : AbstractInventory {
 	public float space = 100;
-	float occupiedSpace = 0;
-	Dictionary<ItemData, int> contents = new Dictionary<ItemData, int>();
-	public Dictionary<ItemData, int> Contents { get {return contents; } } 
+	protected float occupiedSpace = 0;
 
-	public int Add(ItemData item, int number) {
+	public override int Add(ItemData item, int number) {
 		// Add up to the number which the space allows
 		int numAdded = Mathf.Min((int) Mathf.Floor((space - occupiedSpace) / item.bulk), number);
 		if (contents.ContainsKey(item)) contents[item] += numAdded;
@@ -20,12 +18,7 @@ public class ContainerInventory : MonoBehaviour, IInventory {
 		return numAdded;
 	}
 
-	public int Check(ItemData item) {
-		if (contents.ContainsKey(item)) return contents[item];
-		else return 0;
-	}
-
-	public int Retrieve(ItemData item, int number) {
+	public override int Retrieve(ItemData item, int number) {
 		if (!contents.ContainsKey(item)) return 0;
 
 		// If the number requested will exceed the stored amount, or bring it to 0,

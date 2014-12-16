@@ -46,14 +46,15 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\InventoryDisplay.cs" />
      <Compile Include="Assets\Resources\Scripts\DispIP.cs" />
      <Compile Include="Assets\Resources\Scripts\Draggable.cs" />
      <Compile Include="Assets\Resources\Scripts\Editor Scripts\Create Scriptable Objects.cs" />
      <Compile Include="Assets\Resources\Scripts\Editor Scripts\ItemData.cs" />
-     <Compile Include="Assets\Resources\Scripts\Interfaces\IInventory.cs" />
+     <Compile Include="Assets\Resources\Scripts\Editor Scripts\ItemSet.cs" />
+     <Compile Include="Assets\Resources\Scripts\Inventory Scripts\AbstractInventory.cs" />
      <Compile Include="Assets\Resources\Scripts\Inventory Scripts\ContainerInventory.cs" />
-     <Compile Include="Assets\Resources\Scripts\Inventory.cs" />
-     <Compile Include="Assets\Resources\Scripts\InventoryWindow.cs" />
+     <Compile Include="Assets\Resources\Scripts\Inventory Scripts\TestableInventory.cs" />
      <Compile Include="Assets\Resources\Scripts\Item.cs" />
      <Compile Include="Assets\Resources\Scripts\NetworkManager.cs" />
      <Compile Include="Assets\Resources\Scripts\PlayerController.cs" />

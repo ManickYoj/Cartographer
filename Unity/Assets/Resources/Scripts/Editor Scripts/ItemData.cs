@@ -17,8 +17,3 @@ public class ItemData : ScriptableObject {
 	public Item[] reagents;
 	public GameObject[] producedBy;
 }
-
-[System.Serializable]
-public class ItemSet : ScriptableObject {
-	public ItemData[] set;
-}
