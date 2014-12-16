@@ -5,30 +5,49 @@ using System.Collections.Generic;
 public class PlayerController : MonoBehaviour {
 
 	NetworkView pNetworkView;
+	float force = 50;
+	float torque = 70;
+
+	Camera camera;
+	public Camera cameraPrefab;
 
 	void Start () {
+
 		pNetworkView = GetComponent<NetworkView> ();
+
+		// Instantiate a unique camera for the player
+		AssignCamera ();
+
+		// Name player and camera based on their viewID
+		Name ();
 	}
 
-	// Update is called once per frame
 	void Update () {
-		Vector3 moveDir = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
-		float speed = 5;
-		transform.Translate(speed * moveDir * Time.deltaTime);
+		Move ();
 	}
 
-//	void Move () {
-		//Vector3 moveDir = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
-		//float speed = 5;
-		//transform.Translate(speed * moveDir * Time.deltaTime);
+	void Name () {
+		string[] fullID = GetComponent<NetworkView> ().viewID.ToString ().Split (new char[] {' '});
+		name = "Player " + fullID[fullID.Length-1];
+		camera.name = "Camera " + fullID[fullID.Length-1];
+	}
 
-//	}
-
-	[RPC]
-	void DestroyPlayer(GameObject player) {
-		Debug.Log ("RPC Call.");
+	void AssignCamera () {
 		if (pNetworkView.isMine) {
-			Network.Destroy (player);
+			camera = (Camera) Instantiate (cameraPrefab, cameraPrefab.transform.position, cameraPrefab.transform.rotation);
+			camera.gameObject.SetActive (true);
+			camera.gameObject.tag = "MainCamera";
+			camera.GetComponent<CameraController> ().Follow (this.transform);
+		}
+	}
+
+	void Move () {
+		if (pNetworkView.isMine) {
+			Vector2 vel = Input.GetAxis ("Vertical") * transform.up;
+			float rot = - Input.GetAxis ("Horizontal");
+
+			rigidbody2D.AddForce (vel * force * Time.deltaTime);
+			rigidbody2D.AddTorque (rot * torque * Time.deltaTime);
 		}
 	}
 }
