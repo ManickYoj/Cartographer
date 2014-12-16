@@ -17,4 +17,8 @@ public class TestableInventory : ContainerInventory {
 			Add(testSet.set[index], 1);
 		}
 	}
+
+	public void ClickMeRemove() { Debug.Log (Retrieve (testSet.set[0], 10)); }
+
+	public void ClickMeAdd() { Debug.Log (Add (testSet.set[0], 10)); }
 }

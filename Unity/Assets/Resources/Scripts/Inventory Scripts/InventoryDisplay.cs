@@ -24,6 +24,9 @@ public class InventoryDisplay : MonoBehaviour {
 		for (int i = 0; i < numCols*numRows; i++) createNewButton(i);
 	}
 
+	void OnDisable () { if (linkedInventory != null) linkedInventory.Link (null, null); }
+	void OnEnable () { if (linkedInventory != null) FullRefresh(); }
+
 	void createNewButton (int index) {
 		// Creates a new button and links it's activation with the activate(index) function
 		itemDisplays [index] = (Button) Button.Instantiate(itemDisplay);
@@ -43,16 +46,19 @@ public class InventoryDisplay : MonoBehaviour {
 			lastButtonIndex++;
 		}
 		Clear ();
+		inventory.Link (Refresh, FullRefresh);
 	}
 
-	public void Refresh (ItemData item, int count) {
+	void Refresh (ItemData item, int count) {
 		// Refresh display of the indexed item (if it goes to zero)
 		itemDisplays [buttonMap [item]].GetComponentInChildren<Text> ().text = count.ToString();
 	}
 
+	void FullRefresh() { Link (linkedInventory); }
+
 	void Clear() {
 		// Disable all slots after last button
-		for (int i = lastButtonIndex + 1; i < itemDisplays.Length; i++) itemDisplays[i].gameObject.SetActive(false);
+		for (int i = lastButtonIndex; i < itemDisplays.Length; i++) itemDisplays[i].gameObject.SetActive(false);
 	}
 
 	void ListItem (ItemData item, int buttonIndex) {
@@ -63,5 +69,7 @@ public class InventoryDisplay : MonoBehaviour {
 		Refresh (item, linkedInventory.Contents [item]);
 	}
 
-	void Select (ItemData selection) {}
+	void Select (ItemData selection) {
+		Debug.Log ("Selected");
+	}
 }
