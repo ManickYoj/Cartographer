@@ -11,6 +11,7 @@ public class NetworkManager : MonoBehaviour {
 
 	GameObject player;
 	public GameObject playerPrefab;
+	public GameObject AIPrefab;
 
 	void Start () {
 		// Set up menus
@@ -35,6 +36,8 @@ public class NetworkManager : MonoBehaviour {
 		Network.InitializeServer(maxPlayers, hostPort, natPunchthrough);
 		UpdateConnectionStatus ();
 		CreatePlayer ();
+
+		CreateAI ();
 	}
 
 	void OnConnectedToServer() {
@@ -66,5 +69,9 @@ public class NetworkManager : MonoBehaviour {
 
 	void CreatePlayer() {
 		player = (GameObject) Network.Instantiate (playerPrefab, playerPrefab.transform.position, playerPrefab.transform.rotation, 0);
+	}
+
+	void CreateAI () {
+		Network.Instantiate (AIPrefab, AIPrefab.transform.position, AIPrefab.transform.rotation, 0);
 	}
 }

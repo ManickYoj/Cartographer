@@ -8143,6 +8143,7 @@ MonoBehaviour:
   preconnectionMenu: {fileID: 282536609}
   postconnectionMenu: {fileID: 7843082}
   playerPrefab: {fileID: 100000, guid: 7d4398ee6c215cc488f3438c48640491, type: 2}
+  AIPrefab: {fileID: 100000, guid: 1d3858ba79a66e043b05c24cfc5a5840, type: 2}
 --- !u!4 &1812450854
 Transform:
   m_ObjectHideFlags: 0
