@@ -4,15 +4,27 @@ using System.Collections;
 public class AIController : MonoBehaviour {
 
 	NetworkView pNetworkView;
-	float force = 20;
 	float torque = 50;
 
+	// PID Controller: Force
+	Vector3 targetPos = Vector3.zero;
+	float maxForce = 10f;
+	float pGain = 0.5f;
+	//float iGain = 0.2f;
+	float dGain = 0.7f;
+	Vector3 integrator = Vector3.zero;
+	Vector3 lastError = Vector3.zero;
+	Vector3 currentPos = Vector3.zero;
+	Vector3 force = Vector3.zero;
+
+	Vector3 lastForce = Vector3.zero;
+
 	public GameObject target;
-	Transform destPos;
 
 	// Use this for initialization
 	void Start () {
-		destPos = target.transform;
+		targetPos = target.transform.position;
+
 		Name ();
 	}
 
@@ -26,27 +38,25 @@ public class AIController : MonoBehaviour {
 		Move ();
 	}
 
-	void ChangeDest (Transform pos) {
-		destPos = pos;
-	}
-
-	float DeltaTheta() {
-		return Vector3.Angle(transform.rotation.eulerAngles, destPos.position - transform.position);
-	}
-
 	void Move () {
 
-		if (destPos) {
+		// Rotate toward the destination
+		Quaternion rotQuaternion = Quaternion.LookRotation(targetPos - transform.position);
+		transform.rotation = Quaternion.Slerp(transform.rotation, rotQuaternion, Time.deltaTime);
+		transform.rotation = Quaternion.Euler(new Vector3(0f,0f,transform.eulerAngles.z));
 
-//			while(DeltaTheta() > 0) {
-//				rigidbody2D.AddTorque (torque * Time.deltaTime);
-//			}
+		// Move toward the destination
+		currentPos = transform.position;
+		Vector3 error = targetPos - currentPos;
 
-			transform.LookAt(target.transform);
+		integrator += error * Time.deltaTime;
+		Vector3 diff = (error - lastError) / Time.deltaTime;
+		lastError = error;
 
-			//while(transform.position != destPos.positon) { 
-				//rigidbody2D.AddForce(force * Time.deltaTime);
-			//}
-		}
+		force = error * pGain + diff * dGain; //+ integrator * iGain;
+		force = Vector3.ClampMagnitude(force, maxForce);
+		rigidbody2D.AddForce(force);
+
+		lastForce = force;
 	}
 }
