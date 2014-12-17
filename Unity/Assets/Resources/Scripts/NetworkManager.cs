@@ -9,8 +9,8 @@ public class NetworkManager : MonoBehaviour {
 	public GameObject preconnectionMenu;
 	public GameObject postconnectionMenu;
 
-	public GameObject playerPrefab;
 	GameObject player;
+	public GameObject playerPrefab;
 
 	void Start () {
 		// Set up menus
@@ -20,11 +20,13 @@ public class NetworkManager : MonoBehaviour {
 	}
 
 	public void Join() {
+
 		Network.Connect (hostIP.text, hostPort);
 		UpdateConnectionStatus ();
 	}
 
 	public void Host() {
+
 		// Host Variables
 		int maxPlayers = 32;
 		bool natPunchthrough = false;
@@ -36,35 +38,20 @@ public class NetworkManager : MonoBehaviour {
 	}
 
 	void OnConnectedToServer() {
-		Debug.Log ("Connected to Server.");
 		CreatePlayer ();
 	}
 
-	void OnDisconnectedFromServer(NetworkDisconnection e) {
-		if (Network.isServer) Debug.Log("Client Disconnected."); 
-	}
-
 	void OnPlayerDisconnected(NetworkPlayer player) {
-		Debug.Log("Clean up after player " + player);
-
 		Network.RemoveRPCs(player);
-		Network.DestroyPlayerObjects(player);
-		Network.CloseConnection (player, true);
 	}
 
-	void OnPlayerConnected(NetworkPlayer player) {
-		foreach(NetworkPlayer c in Network.connections) {
-			Debug.Log (c);
-		}
-	}
-	
 	public void Disconnect() {
-		Network.Destroy (player.GetComponent <NetworkView> ().viewID);
-		player.GetComponent<NetworkView> ().RPC ("DestroyPlayer", RPCMode.All, player);
-		Debug.Log ("Hmm...?");
 
+		Network.Destroy (player);
 		Network.Disconnect (200);
-		//if (Network.isClient) Network.CloseConnection (Network.connections[0], true);
+
+		// Destroy the player's main camera
+		Destroy (Camera.main.gameObject);
 
 		// Reset Menus
 		preconnectionMenu.SetActive (true);
@@ -79,7 +66,5 @@ public class NetworkManager : MonoBehaviour {
 
 	void CreatePlayer() {
 		player = (GameObject) Network.Instantiate (playerPrefab, playerPrefab.transform.position, playerPrefab.transform.rotation, 0);
-		player.name = "Player";
-		player.transform.Find ("Camera").gameObject.SetActive(true);
 	}
 }
