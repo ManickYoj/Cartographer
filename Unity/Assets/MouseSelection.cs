@@ -34,14 +34,9 @@ public class MouseSelection : MonoBehaviour {
 	}
 
 	public void InventoryClick (InventoryDisplay inventory) {
-		Debug.Log ("ste");
 		if (this.inventory == null ) return;
 		inventory.AddItem (item, count);
 		NullifySelection ();
-	}
-
-	public void Test () {
-		Debug.Log ("Explative");
 	}
 
 	void NullifySelection () {
