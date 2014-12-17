@@ -46,7 +46,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\MouseSelection.cs" />
      <Compile Include="Assets\Resources\Scripts\AIController.cs" />
      <Compile Include="Assets\Resources\Scripts\CameraController.cs" />
      <Compile Include="Assets\Resources\Scripts\DispIP.cs" />
@@ -59,6 +58,7 @@
      <Compile Include="Assets\Resources\Scripts\Inventory Scripts\InventoryDisplay.cs" />
      <Compile Include="Assets\Resources\Scripts\Inventory Scripts\TestableInventory.cs" />
      <Compile Include="Assets\Resources\Scripts\Item.cs" />
+     <Compile Include="Assets\Resources\Scripts\MouseSelection.cs" />
      <Compile Include="Assets\Resources\Scripts\NetworkManager.cs" />
      <Compile Include="Assets\Resources\Scripts\PlayerController.cs" />
  <Reference Include="UnityEngine.UI">
