@@ -7,14 +7,15 @@ Library/
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
 # ===================================== #
-ExportedObj/
+[Ee]xportedObj/
 obj/
 *.svd
 *.userprefs
 /*.csproj
 *.pidb
 *.suo
-/*.sln
+*.sln
+/*.sln*
 *.user
 *.unityproj
 *.booproj

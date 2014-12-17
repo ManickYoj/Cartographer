@@ -11,8 +11,10 @@ public class InventoryDisplay : MonoBehaviour {
 	Button[] itemDisplays;
 	Dictionary<ItemData, int> buttonMap = new Dictionary<ItemData, int>();
 	int lastButtonIndex = 0;
+	static MouseSelection selection;
 
 	void Awake () {
+		if (!selection) selection = GameObject.FindGameObjectWithTag ("MouseSelection").GetComponent<MouseSelection>();
 		// Create item displays
 		Vector2 windowSize = GetComponent<RectTransform>().rect.size;
 		GridLayoutGroup layoutGroup = GetComponent<GridLayoutGroup> ();
@@ -62,14 +64,14 @@ public class InventoryDisplay : MonoBehaviour {
 	}
 
 	void ListItem (ItemData item, int buttonIndex) {
-		itemDisplays [buttonIndex].onClick.AddListener( delegate { Select (item); } );
+		itemDisplays [buttonIndex].onClick.AddListener( delegate { selection.Select (item, linkedInventory); } );
 		itemDisplays [buttonIndex].gameObject.SetActive (true);
 		itemDisplays [buttonIndex].GetComponent<Image> ().sprite = item.icon;
 		buttonMap [item] = buttonIndex;
 		Refresh (item, linkedInventory.Contents [item]);
 	}
 
-	void Select (ItemData selection) {
-		Debug.Log ("Selected");
+	public void AddItem (ItemData item, int count) {
+		linkedInventory.Add (item, count);
 	}
 }
