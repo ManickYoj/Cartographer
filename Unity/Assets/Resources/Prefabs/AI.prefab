@@ -14,8 +14,8 @@ GameObject:
   - 50: {fileID: 5000000}
   - 212: {fileID: 21200000}
   m_Layer: 0
-  m_Name: Player
-  m_TagString: PlayerCharacter
+  m_Name: AI
+  m_TagString: AICharacter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,8 +26,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalRotation: {x: .00872653536, y: 0, z: 0, w: .999961913}
+  m_LocalPosition: {x: 5, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -73,10 +73,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5690a2844bc17ff459b63f4c0245aa67, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b918db226c32e1428b7f98334e383c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraPrefab: {fileID: 2000000, guid: 3b6b58805f447b8458bb3918d085baab, type: 2}
 --- !u!148 &14800000
 NetworkView:
   m_ObjectHideFlags: 1

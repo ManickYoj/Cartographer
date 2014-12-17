@@ -5,8 +5,8 @@ using System.Collections.Generic;
 public class PlayerController : MonoBehaviour {
 
 	NetworkView pNetworkView;
-	float force = 50;
-	float torque = 70;
+	float force = 20;
+	float torque = 50;
 
 	Camera camera;
 	public Camera cameraPrefab;
