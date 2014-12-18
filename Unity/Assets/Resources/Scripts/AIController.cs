@@ -6,14 +6,14 @@ public class AIController : MonoBehaviour {
 	NetworkView pNetworkView;
 
 	// PD Controller
-	float maxForce = 10f;
+	float maxForce = 1;
 	float pGain = 0.5f;
 	float dGain = 0.7f;
 	Vector3 lastError = Vector3.zero;
 	Vector3 currentPos = Vector3.zero;
 	Vector3 force = Vector3.zero;
 
-	bool turning = true;
+	bool turning = false;
 	Quaternion lastRotation;
 
 	public GameObject target;
@@ -25,7 +25,7 @@ public class AIController : MonoBehaviour {
 		lastRotation = transform.rotation;
 	}
 
-	void ChangeTarget(GameObject t) {
+	public void SetTarget(GameObject t) {
 		target = t;
 		turning = true;
 	}
