@@ -4,10 +4,8 @@ using System.Collections;
 public class AIController : MonoBehaviour {
 
 	NetworkView pNetworkView;
-	float torque = 50;
 
-	// PID Controller
-	public Vector3 targetPos = Vector3.zero;
+	// PD Controller
 	float maxForce = 10f;
 	float pGain = 0.5f;
 	float dGain = 0.7f;
@@ -15,11 +13,10 @@ public class AIController : MonoBehaviour {
 	Vector3 currentPos = Vector3.zero;
 	Vector3 force = Vector3.zero;
 
-	//float iGain = 0.2f;
-	//Vector3 integrator = Vector3.zero;
-
-	bool turning = true;
+	bool turning = false;
 	Quaternion lastRotation;
+
+	public GameObject target;
 	
 	// Use this for initialization
 	void Start () {
@@ -28,8 +25,8 @@ public class AIController : MonoBehaviour {
 		lastRotation = transform.rotation;
 	}
 
-	void ChangeTarget(Vector3 pos) {
-		targetPos = pos;
+	void ChangeTarget(GameObject t) {
+		target = t;
 		turning = true;
 	}
 
@@ -44,33 +41,33 @@ public class AIController : MonoBehaviour {
 	}
 
 	void Move () {
-		if (turning) {
-			// Rotate toward the destination
-			//Quaternion rotQuaternion = Quaternion.LookRotation(targetPos - transform.position);
-			//transform.rotation = Quaternion.Slerp(transform.rotation, rotQuaternion, Time.deltaTime);
-			//transform.rotation = Quaternion.Euler(new Vector3(0f,0f,transform.eulerAngles.z));
+		if (target) {
+			if (turning) {
+				// Rotate toward the destination
+				Vector3 tTarget = new Vector3(target.transform.position.x, target.transform.position.y, 0);
+				Vector3 tSelf = new Vector3(transform.position.x, transform.position.y, 0);
 
-			float deltaTheta = Vector3.Angle (transform.position, targetPos);
-			Quaternion rotQuaternion = Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, deltaTheta));
-			transform.rotation = Quaternion.Slerp(transform.rotation, rotQuaternion, Time.deltaTime * 2);
+				float angle = Vector3.Angle(tTarget - tSelf, Vector3.up);
+				Quaternion q = Quaternion.AngleAxis(angle, transform.forward);
+				transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y,
+				                                      Quaternion.Slerp(transform.rotation, q, Time.deltaTime).eulerAngles.z);
 
-			if (transform.rotation.Equals(lastRotation)) turning = false;
-			lastRotation = transform.rotation;
-		}
+				if (Quaternion.Angle(transform.rotation,lastRotation) == 0) turning = false;
+				lastRotation = transform.rotation;
+			}
 
-		else {
-			//Debug.Log
-			// Move toward the destination
-			currentPos = transform.position;
-			Vector3 error = targetPos - currentPos;
+			else {
+				// Move toward the destination, PD Controller
+				currentPos = transform.position;
+				Vector3 error = target.transform.position - currentPos;
 
-			//integrator += error * Time.deltaTime;
-			Vector3 diff = (error - lastError) / Time.deltaTime;
-			lastError = error;
+				Vector3 diff = (error - lastError) / Time.deltaTime;
+				lastError = error;
 
-			force = error * pGain + diff * dGain; //+ integrator * iGain;
-			force = Vector3.ClampMagnitude(force, maxForce);
-			rigidbody2D.AddForce(force);
+				force = error * pGain + diff * dGain;
+				force = Vector3.ClampMagnitude(force, maxForce);
+				rigidbody2D.AddForce(force);
+			}
 		}
 	}
 }
