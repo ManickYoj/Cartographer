@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class MouseSelection : MonoBehaviour {
+	public static MouseSelection ActiveSelection { get; private set; }
+
 	ItemData item;
 	AbstractInventory inventory;
 	int count;
@@ -12,6 +14,7 @@ public class MouseSelection : MonoBehaviour {
 	Sprite defaultSprite;
 
 	void Start() {
+		MouseSelection.ActiveSelection = this;
 		image = GetComponent<Image> ();
 		defaultSprite = image.sprite;
 	}
@@ -25,6 +28,7 @@ public class MouseSelection : MonoBehaviour {
 		this.item = item;
 		this.inventory = inventory;
 		count = inventory.Retrieve (item, 1);
+		Screen.showCursor = false;
 	}
 
 	public void Deselect () {
@@ -35,8 +39,7 @@ public class MouseSelection : MonoBehaviour {
 
 	public void InventoryClick (InventoryDisplay inventory) {
 		if (this.inventory == null ) return;
-		inventory.AddItem (item, count);
-		NullifySelection ();
+		if (inventory.AddItem (item, count) != 0) NullifySelection ();
 	}
 
 	void NullifySelection () {
@@ -44,5 +47,6 @@ public class MouseSelection : MonoBehaviour {
 		inventory = null;
 		count = 0;
 		image.sprite = defaultSprite;
+		Screen.showCursor = true;
 	}
 }

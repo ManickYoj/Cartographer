@@ -20,6 +20,11 @@ public abstract class AbstractInventory : MonoBehaviour {
 		fullRefresh = fullRefreshFunction;
 	}
 
+	public void Unlink () {
+		refreshItem = null;
+		fullRefresh = null;
+	}
+
 	public int Check(ItemData item) {
 		if (contents.ContainsKey(item)) return contents[item];
 		else return 0;
