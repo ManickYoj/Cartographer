@@ -7,14 +7,12 @@ public class InventoryDisplay : MonoBehaviour {
 
 	public Button itemDisplay;
 
-	AbstractInventory linkedInventory;
-	Button[] itemDisplays;
-	Dictionary<ItemData, int> buttonMap = new Dictionary<ItemData, int>();
+	protected AbstractInventory linkedInventory;
+	protected Button[] itemDisplays;
+	protected Dictionary<ItemData, int> buttonMap = new Dictionary<ItemData, int>();
 	int lastButtonIndex = 0;
-	static MouseSelection selection;
 
 	void Awake () {
-		if (!selection) selection = GameObject.FindGameObjectWithTag ("MouseSelection").GetComponent<MouseSelection>();
 		// Create item displays
 		Vector2 windowSize = GetComponent<RectTransform>().rect.size;
 		GridLayoutGroup layoutGroup = GetComponent<GridLayoutGroup> ();
@@ -26,8 +24,8 @@ public class InventoryDisplay : MonoBehaviour {
 		for (int i = 0; i < numCols*numRows; i++) createNewButton(i);
 	}
 
-	void OnDisable () { if (linkedInventory != null) linkedInventory.Link (null, null); }
-	void OnEnable () { if (linkedInventory != null) FullRefresh(); }
+	void OnDisable () { if (linkedInventory != null) linkedInventory.Unlink (); }
+	void OnEnable () { 	if (linkedInventory != null) FullRefresh(); }
 
 	void createNewButton (int index) {
 		// Creates a new button and links it's activation with the activate(index) function
@@ -51,8 +49,16 @@ public class InventoryDisplay : MonoBehaviour {
 		inventory.Link (Refresh, FullRefresh);
 	}
 
-	void Refresh (ItemData item, int count) {
-		// Refresh display of the indexed item (if it goes to zero)
+	public void Unlink() {
+		lastButtonIndex = 0;
+		Clear ();
+		if (linkedInventory != null) {
+			linkedInventory.Unlink ();
+			linkedInventory = null;
+		}
+	}
+
+	protected void Refresh (ItemData item, int count) {
 		itemDisplays [buttonMap [item]].GetComponentInChildren<Text> ().text = count.ToString();
 	}
 
@@ -63,15 +69,20 @@ public class InventoryDisplay : MonoBehaviour {
 		for (int i = lastButtonIndex; i < itemDisplays.Length; i++) itemDisplays[i].gameObject.SetActive(false);
 	}
 
-	void ListItem (ItemData item, int buttonIndex) {
-		itemDisplays [buttonIndex].onClick.AddListener( delegate { selection.Select (item, linkedInventory); } );
+	virtual protected void ListItem (ItemData item, int buttonIndex) {
+		itemDisplays [buttonIndex].onClick.RemoveAllListeners ();
+		itemDisplays [buttonIndex].onClick.AddListener( delegate { MouseSelection.ActiveSelection.Select (item, linkedInventory); } );
 		itemDisplays [buttonIndex].gameObject.SetActive (true);
 		itemDisplays [buttonIndex].GetComponent<Image> ().sprite = item.icon;
 		buttonMap [item] = buttonIndex;
 		Refresh (item, linkedInventory.Contents [item]);
 	}
 
-	public void AddItem (ItemData item, int count) {
-		linkedInventory.Add (item, count);
+	virtual public void AddSelectedItem () {
+		MouseSelection.ActiveSelection.InventoryClick (this);
+	}
+
+	public int AddItem (ItemData item, int count) {
+		return linkedInventory.Add (item, count);
 	}
 }

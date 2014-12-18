@@ -13,7 +13,7 @@ public class AIController : MonoBehaviour {
 	Vector3 currentPos = Vector3.zero;
 	Vector3 force = Vector3.zero;
 
-	bool turning = false;
+	bool turning = true;
 	Quaternion lastRotation;
 
 	public GameObject target;

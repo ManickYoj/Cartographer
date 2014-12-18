@@ -7,9 +7,6 @@ public class Draggable : MonoBehaviour {
 
 	public void BeginDrag() {
 		transformOffset =  Input.mousePosition - transform.position; 
-		Debug.Log (transform.position);
-		Debug.Log (Input.mousePosition);
-		Debug.Log (transformOffset);
 	}
 
 	public void Drag() {

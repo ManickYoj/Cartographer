@@ -46,7 +46,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\MouseSelection.cs" />
      <Compile Include="Assets\Resources\Scripts\AIController.cs" />
      <Compile Include="Assets\Resources\Scripts\CameraController.cs" />
      <Compile Include="Assets\Resources\Scripts\DispIP.cs" />
@@ -57,10 +56,20 @@
      <Compile Include="Assets\Resources\Scripts\Inventory Scripts\AbstractInventory.cs" />
      <Compile Include="Assets\Resources\Scripts\Inventory Scripts\ContainerInventory.cs" />
      <Compile Include="Assets\Resources\Scripts\Inventory Scripts\InventoryDisplay.cs" />
+     <Compile Include="Assets\Resources\Scripts\Inventory Scripts\MarketInventory.cs" />
+     <Compile Include="Assets\Resources\Scripts\Inventory Scripts\ProxyBuyer.cs" />
+     <Compile Include="Assets\Resources\Scripts\Inventory Scripts\PurchasesDisplay.cs" />
+     <Compile Include="Assets\Resources\Scripts\Inventory Scripts\SalesDisplay.cs" />
      <Compile Include="Assets\Resources\Scripts\Inventory Scripts\TestableInventory.cs" />
+     <Compile Include="Assets\Resources\Scripts\Inventory Scripts\TestableProxyBuyer.cs" />
      <Compile Include="Assets\Resources\Scripts\Item.cs" />
+     <Compile Include="Assets\Resources\Scripts\Mine.cs" />
+     <Compile Include="Assets\Resources\Scripts\MouseSelection.cs" />
      <Compile Include="Assets\Resources\Scripts\NetworkManager.cs" />
+     <Compile Include="Assets\Resources\Scripts\OutpostDocking.cs" />
+     <Compile Include="Assets\Resources\Scripts\OutpostWindow.cs" />
      <Compile Include="Assets\Resources\Scripts\PlayerController.cs" />
+     <Compile Include="Assets\WindowStartup.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
  </Reference>
