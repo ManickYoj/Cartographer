@@ -83,6 +83,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5690a2844bc17ff459b63f4c0245aa67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  torque: 5
   cameraPrefab: {fileID: 2000000, guid: 3b6b58805f447b8458bb3918d085baab, type: 2}
 --- !u!148 &14800000
 NetworkView:

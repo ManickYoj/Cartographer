@@ -6,6 +6,6 @@ public class TestableProxyBuyer : ProxyBuyer {
 	public ItemSet items;
 
 	void Start () {
-		Set (items.set [0], 5);
+		foreach (ItemData i in items.set) if (i.name == "Mining Tools") Set (i, 10);
 	}
 }

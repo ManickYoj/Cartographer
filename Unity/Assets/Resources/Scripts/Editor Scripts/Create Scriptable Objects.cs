@@ -27,3 +27,16 @@ public class CreateItemSet {
 		Selection.activeObject = asset;
 	}
 }
+
+public class CreateReagentCost {
+	[MenuItem("Assets/Create/Reagent Cost")]
+	
+	public static void CreateItemDataObject () {
+		ReagentCost asset = ScriptableObject.CreateInstance<ReagentCost> ();
+		AssetDatabase.CreateAsset (asset, "Assets/Resources/Scriptable Objects/New Reagent.asset");
+		AssetDatabase.SaveAssets ();
+		
+		EditorUtility.FocusProjectWindow ();
+		Selection.activeObject = asset;
+	}
+}

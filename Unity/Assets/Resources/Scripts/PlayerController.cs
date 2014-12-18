@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour {
 
 	NetworkView pNetworkView;
 	float force = 20;
-	float torque = 50;
+	public float torque = 50;
 
 	Camera camera;
 	public Camera cameraPrefab;
@@ -24,6 +24,15 @@ public class PlayerController : MonoBehaviour {
 
 	void Update () {
 		Move ();
+		DisplayInventory ();
+	}
+
+	void DisplayInventory(){
+		if(pNetworkView.isMine && Input.GetButtonDown("Inventory")) {
+			if (ContainerWindow.ActiveWindow.gameObject.activeSelf)
+				ContainerWindow.ActiveWindow.gameObject.SetActive(false);
+			else ContainerWindow.ActiveWindow.Display(GetComponent<ContainerInventory>());
+		}
 	}
 
 	void Name () {

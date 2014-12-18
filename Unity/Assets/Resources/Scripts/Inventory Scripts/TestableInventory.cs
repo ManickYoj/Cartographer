@@ -10,7 +10,7 @@ public class TestableInventory : ContainerInventory {
 	}
 
 	void PopulateInventory () {
-		while (space - occupiedSpace > 10) {
+		while (space - occupiedSpace > .2*space) {
 			int index = Random.Range(0, testSet.set.Length);
 			Add(testSet.set[index], 1);
 		}

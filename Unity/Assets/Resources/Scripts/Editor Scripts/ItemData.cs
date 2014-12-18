@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 [System.Serializable]
 public class ItemData : ScriptableObject {
@@ -14,6 +15,7 @@ public class ItemData : ScriptableObject {
 	
 	// Production Data
 	public int laborCost;
-	public Item[] reagents;
-	public GameObject[] producedBy;
+	public ReagentCost[] reagents;
+	public int producedMin = 1;
+	public int producedMax = 1;
 }

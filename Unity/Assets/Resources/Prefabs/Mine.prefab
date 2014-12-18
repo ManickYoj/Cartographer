@@ -9,10 +9,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400002}
-  - 114: {fileID: 11400000}
+  - 114: {fileID: 11400006}
   - 114: {fileID: 11400008}
   - 114: {fileID: 11400004}
-  - 114: {fileID: 11400006}
   - 58: {fileID: 5800000}
   - 212: {fileID: 21200000}
   m_Layer: 0
@@ -45,17 +44,6 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_Radius: .5
   m_Center: {x: 0, y: 0}
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dce3687f61e064a42ae636bd39fe44a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -64,11 +52,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aba4f961e82ea0e4692ece0fe136787f, type: 3}
+  m_Script: {fileID: 11500000, guid: 9df6ebd168a9a9c46874c54a1e5b3cbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainInventory: {fileID: 11400006}
   salesInventory: {fileID: 11400004}
   purchaseInventory: {fileID: 11400008}
+  products: {fileID: 11400000, guid: 90d0bee631461e242833d42fc6e78bb4, type: 2}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -81,7 +71,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   space: 100
-  testSet: {fileID: 11400000, guid: f5297f63e4bb9564fa511d71af88f71e, type: 2}
+  testSet: {fileID: 11400000, guid: 90d0bee631461e242833d42fc6e78bb4, type: 2}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -90,10 +80,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb00f0d916071694db544b8566a302d1, type: 3}
+  m_Script: {fileID: 11500000, guid: 281c74fc57ac22548b858a6a1f5d03da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  space: 100
+  space: 300
+  testSet: {fileID: 11400000, guid: f5297f63e4bb9564fa511d71af88f71e, type: 2}
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1

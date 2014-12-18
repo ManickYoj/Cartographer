@@ -53,8 +53,11 @@
      <Compile Include="Assets\Resources\Scripts\Editor Scripts\Create Scriptable Objects.cs" />
      <Compile Include="Assets\Resources\Scripts\Editor Scripts\ItemData.cs" />
      <Compile Include="Assets\Resources\Scripts\Editor Scripts\ItemSet.cs" />
+     <Compile Include="Assets\Resources\Scripts\Editor Scripts\ReagentCost.cs" />
      <Compile Include="Assets\Resources\Scripts\Inventory Scripts\AbstractInventory.cs" />
+     <Compile Include="Assets\Resources\Scripts\Inventory Scripts\AbstractWindow.cs" />
      <Compile Include="Assets\Resources\Scripts\Inventory Scripts\ContainerInventory.cs" />
+     <Compile Include="Assets\Resources\Scripts\Inventory Scripts\ContainerWindow.cs" />
      <Compile Include="Assets\Resources\Scripts\Inventory Scripts\InventoryDisplay.cs" />
      <Compile Include="Assets\Resources\Scripts\Inventory Scripts\MarketInventory.cs" />
      <Compile Include="Assets\Resources\Scripts\Inventory Scripts\ProxyBuyer.cs" />
@@ -63,11 +66,12 @@
      <Compile Include="Assets\Resources\Scripts\Inventory Scripts\TestableInventory.cs" />
      <Compile Include="Assets\Resources\Scripts\Inventory Scripts\TestableProxyBuyer.cs" />
      <Compile Include="Assets\Resources\Scripts\Item.cs" />
-     <Compile Include="Assets\Resources\Scripts\Mine.cs" />
      <Compile Include="Assets\Resources\Scripts\MouseSelection.cs" />
      <Compile Include="Assets\Resources\Scripts\NetworkManager.cs" />
-     <Compile Include="Assets\Resources\Scripts\OutpostDocking.cs" />
-     <Compile Include="Assets\Resources\Scripts\OutpostWindow.cs" />
+     <Compile Include="Assets\Resources\Scripts\Outpost Scripts\Outpost.cs" />
+     <Compile Include="Assets\Resources\Scripts\Outpost Scripts\OutpostWindow.cs" />
+     <Compile Include="Assets\Resources\Scripts\Outpost Scripts\TestableOutpost.cs" />
+     <Compile Include="Assets\Resources\Scripts\Outpost Scripts\Worker.cs" />
      <Compile Include="Assets\Resources\Scripts\PlayerController.cs" />
      <Compile Include="Assets\WindowStartup.cs" />
  <Reference Include="UnityEngine.UI">
