@@ -72,6 +72,8 @@ public class NetworkManager : MonoBehaviour {
 	}
 
 	void CreateAI () {
-		Network.Instantiate (AIPrefab, AIPrefab.transform.position, AIPrefab.transform.rotation, 0);
+		for (int i = 0; i < 7; i++) {
+			Network.Instantiate (AIPrefab, AIPrefab.transform.position, AIPrefab.transform.rotation, 0);
+		}
 	}
 }

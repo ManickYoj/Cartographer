@@ -7,11 +7,11 @@ public class MarketInventory : AbstractInventory {
 		// Add up to the number which the space allows
 		if (contents.ContainsKey(item)) {
 			contents[item] += number;
-			if (refreshItem != null) refreshItem(item, contents[item]);
+			Refresh(item, contents[item]);
 		}
 		else {
 			contents[item] = number;
-			if (fullRefresh != null) fullRefresh();
+			FullRefresh();
 		}
 
 		return number;
@@ -25,10 +25,10 @@ public class MarketInventory : AbstractInventory {
 		if (number >= contents[item]) {
 			number = contents[item];
 			contents.Remove(item);
-			if (fullRefresh != null) fullRefresh();
+			FullRefresh();
 		} else {
 			contents [item] -= number;
-			if (refreshItem != null) refreshItem(item, contents[item]);
+			Refresh(item, contents[item]);
 		}
 		
 		return number;

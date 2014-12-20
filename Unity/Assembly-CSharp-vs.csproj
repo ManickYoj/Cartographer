@@ -49,7 +49,6 @@
      <Compile Include="Assets\Resources\Scripts\AIController.cs" />
      <Compile Include="Assets\Resources\Scripts\CameraController.cs" />
      <Compile Include="Assets\Resources\Scripts\DispIP.cs" />
-     <Compile Include="Assets\Resources\Scripts\Editor Scripts\Create Scriptable Objects.cs" />
      <Compile Include="Assets\Resources\Scripts\Editor Scripts\ItemData.cs" />
      <Compile Include="Assets\Resources\Scripts\Editor Scripts\ItemSet.cs" />
      <Compile Include="Assets\Resources\Scripts\Editor Scripts\ReagentCost.cs" />
@@ -73,6 +72,7 @@
      <Compile Include="Assets\Resources\Scripts\Outpost Scripts\Testing\TestableOutpost.cs" />
      <Compile Include="Assets\Resources\Scripts\Outpost Scripts\Worker.cs" />
      <Compile Include="Assets\Resources\Scripts\PlayerController.cs" />
+     <Compile Include="Assets\Resources\Scripts\WaypointModule.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
  </Reference>

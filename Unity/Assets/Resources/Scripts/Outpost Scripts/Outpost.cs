@@ -21,7 +21,8 @@ public abstract class Outpost : MonoBehaviour {
 	}
 	
 	void OnTriggerExit2D (Collider2D other) {
-		if (OutpostWindow.ActiveWindow.gameObject.activeSelf) OutpostWindow.ActiveWindow.gameObject.SetActive(false);
+		if (other.name.Contains ("Player") && other.GetComponent<NetworkView>().isMine)
+			if (OutpostWindow.ActiveWindow.gameObject.activeSelf) OutpostWindow.ActiveWindow.gameObject.SetActive(false);
 	}
 
 	void OnMouseDown() {

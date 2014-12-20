@@ -9,20 +9,18 @@ public abstract class AbstractInventory : MonoBehaviour {
 	static ItemData selected;
 	static int numSelected;
 	
-	public delegate void Refresh (ItemData item, int count);
-	public delegate void FullRefresh ();
-	
-	protected Refresh refreshItem;
-	protected FullRefresh fullRefresh;
-	
-	public void Link (Refresh refreshItemFunction, FullRefresh fullRefreshFunction) {
-		refreshItem = refreshItemFunction;
-		fullRefresh = fullRefreshFunction;
+	public delegate void RefreshDelegate (ItemData item, int count);
+	public delegate void FullRefreshDelegate ();
+
+	public event RefreshDelegate refreshEvent;
+	public event FullRefreshDelegate fullRefreshEvent;
+
+	protected void Refresh (ItemData item, int count) {
+		if (refreshEvent != null ) refreshEvent (item, count);
 	}
 
-	public void Unlink () {
-		refreshItem = null;
-		fullRefresh = null;
+	protected void FullRefresh () {
+		if (fullRefreshEvent != null ) fullRefreshEvent();
 	}
 
 	public int Check(ItemData item) {

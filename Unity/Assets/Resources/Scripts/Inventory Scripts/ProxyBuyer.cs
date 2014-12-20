@@ -14,10 +14,10 @@ public class ProxyBuyer : AbstractInventory {
 		if (number >= contents[item]) {
 			number = contents[item];
 			contents.Remove(item);
-			if (fullRefresh != null) fullRefresh();
+			FullRefresh();
 		} else {
 			contents [item] -= number;
-			if (refreshItem != null) refreshItem(item, contents[item]);
+			Refresh(item, contents[item]);
 		}
 
 		underwritingInventory.Add (item, number);

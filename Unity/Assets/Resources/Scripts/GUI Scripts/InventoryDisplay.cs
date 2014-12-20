@@ -24,7 +24,7 @@ public class InventoryDisplay : MonoBehaviour {
 		for (int i = 0; i < numCols*numRows; i++) createNewButton(i);
 	}
 
-	void OnDisable () { if (linkedInventory != null) linkedInventory.Unlink (); }
+	void OnDisable () { if (linkedInventory != null) Unlink (); }
 	void OnEnable () { 	if (linkedInventory != null) FullRefresh(); }
 
 	void createNewButton (int index) {
@@ -39,6 +39,7 @@ public class InventoryDisplay : MonoBehaviour {
 	/// </summary>
 	/// <param name="inventory">The inventory to link.</param>
 	public void Link(AbstractInventory inventory) {
+		if (linkedInventory != null) Unlink();
 		linkedInventory = inventory;
 		lastButtonIndex = 0;
 		foreach (ItemData item in inventory.Contents.Keys){
@@ -46,14 +47,16 @@ public class InventoryDisplay : MonoBehaviour {
 			lastButtonIndex++;
 		}
 		Clear ();
-		inventory.Link (Refresh, FullRefresh);
+		inventory.refreshEvent += Refresh;
+		inventory.fullRefreshEvent += FullRefresh;
 	}
 
 	public void Unlink() {
 		lastButtonIndex = 0;
 		Clear ();
 		if (linkedInventory != null) {
-			linkedInventory.Unlink ();
+			linkedInventory.refreshEvent -= Refresh;
+			linkedInventory.fullRefreshEvent -= FullRefresh;
 			linkedInventory = null;
 		}
 	}

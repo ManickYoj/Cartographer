@@ -11,11 +11,11 @@ public class ContainerInventory : AbstractInventory {
 		int numAdded = Mathf.Min((int) Mathf.Floor((space - occupiedSpace) / item.bulk), number);
 		if (contents.ContainsKey(item)) {
 			contents[item] += numAdded;
-			if (refreshItem != null) refreshItem(item, contents[item]);
+			Refresh(item, contents[item]);
 		}
 		else {
 			contents[item] = numAdded;
-			if (fullRefresh != null) fullRefresh();
+			FullRefresh();
 		}
 
 		// Increment the amount of space occupied
@@ -31,10 +31,10 @@ public class ContainerInventory : AbstractInventory {
 		if (number >= contents[item]) {
 			number = contents[item];
 			contents.Remove(item);
-			if (fullRefresh != null) fullRefresh();
+			FullRefresh();
 		} else {
 			contents [item] -= number;
-			if (refreshItem != null) refreshItem(item, contents[item]);
+			Refresh(item, contents[item]);
 		}
 
 		occupiedSpace -= number * item.bulk;
