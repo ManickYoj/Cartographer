@@ -14,7 +14,7 @@ public abstract class Outpost : MonoBehaviour {
 	Dictionary<ItemData, float> reagentUse = new Dictionary<ItemData, float>();
 
 	void OnTriggerEnter2D (Collider2D other) {
-		if (other.name.Contains ("Player")) { // Jank much?
+		if (other.name.Contains ("Player") && other.GetComponent<NetworkView>().isMine) { // Jank much?
 			AbstractInventory playerInv = other.GetComponent<AbstractInventory>();
 			OutpostWindow.ActiveWindow.Display(playerInv, salesInventory, purchaseInventory);
 		}

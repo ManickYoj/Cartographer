@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_4_6_0;UNITY_4_6;UNITY_64;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_6_0;UNITY_4_6;UNITY_64;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -49,31 +49,30 @@
      <Compile Include="Assets\Resources\Scripts\AIController.cs" />
      <Compile Include="Assets\Resources\Scripts\CameraController.cs" />
      <Compile Include="Assets\Resources\Scripts\DispIP.cs" />
-     <Compile Include="Assets\Resources\Scripts\Draggable.cs" />
      <Compile Include="Assets\Resources\Scripts\Editor Scripts\Create Scriptable Objects.cs" />
      <Compile Include="Assets\Resources\Scripts\Editor Scripts\ItemData.cs" />
      <Compile Include="Assets\Resources\Scripts\Editor Scripts\ItemSet.cs" />
      <Compile Include="Assets\Resources\Scripts\Editor Scripts\ReagentCost.cs" />
-     <Compile Include="Assets\Resources\Scripts\Inventory Scripts\AbstractInventory.cs" />
-     <Compile Include="Assets\Resources\Scripts\Inventory Scripts\AbstractWindow.cs" />
+     <Compile Include="Assets\Resources\Scripts\GUI Scripts\Base Classes\AbstractWindow.cs" />
+     <Compile Include="Assets\Resources\Scripts\GUI Scripts\ContainerWindow.cs" />
+     <Compile Include="Assets\Resources\Scripts\GUI Scripts\Draggable.cs" />
+     <Compile Include="Assets\Resources\Scripts\GUI Scripts\InventoryDisplay.cs" />
+     <Compile Include="Assets\Resources\Scripts\GUI Scripts\MouseSelection.cs" />
+     <Compile Include="Assets\Resources\Scripts\GUI Scripts\OutpostWindow.cs" />
+     <Compile Include="Assets\Resources\Scripts\GUI Scripts\PurchasesDisplay.cs" />
+     <Compile Include="Assets\Resources\Scripts\GUI Scripts\SalesDisplay.cs" />
+     <Compile Include="Assets\Resources\Scripts\GUI Scripts\WindowStartup.cs" />
+     <Compile Include="Assets\Resources\Scripts\Inventory Scripts\Base Classes\AbstractInventory.cs" />
      <Compile Include="Assets\Resources\Scripts\Inventory Scripts\ContainerInventory.cs" />
-     <Compile Include="Assets\Resources\Scripts\Inventory Scripts\ContainerWindow.cs" />
-     <Compile Include="Assets\Resources\Scripts\Inventory Scripts\InventoryDisplay.cs" />
      <Compile Include="Assets\Resources\Scripts\Inventory Scripts\MarketInventory.cs" />
      <Compile Include="Assets\Resources\Scripts\Inventory Scripts\ProxyBuyer.cs" />
-     <Compile Include="Assets\Resources\Scripts\Inventory Scripts\PurchasesDisplay.cs" />
-     <Compile Include="Assets\Resources\Scripts\Inventory Scripts\SalesDisplay.cs" />
-     <Compile Include="Assets\Resources\Scripts\Inventory Scripts\TestableInventory.cs" />
-     <Compile Include="Assets\Resources\Scripts\Inventory Scripts\TestableProxyBuyer.cs" />
-     <Compile Include="Assets\Resources\Scripts\Item.cs" />
-     <Compile Include="Assets\Resources\Scripts\MouseSelection.cs" />
+     <Compile Include="Assets\Resources\Scripts\Inventory Scripts\Testing\TestableInventory.cs" />
+     <Compile Include="Assets\Resources\Scripts\Inventory Scripts\Testing\TestableProxyBuyer.cs" />
      <Compile Include="Assets\Resources\Scripts\NetworkManager.cs" />
      <Compile Include="Assets\Resources\Scripts\Outpost Scripts\Outpost.cs" />
-     <Compile Include="Assets\Resources\Scripts\Outpost Scripts\OutpostWindow.cs" />
-     <Compile Include="Assets\Resources\Scripts\Outpost Scripts\TestableOutpost.cs" />
+     <Compile Include="Assets\Resources\Scripts\Outpost Scripts\Testing\TestableOutpost.cs" />
      <Compile Include="Assets\Resources\Scripts\Outpost Scripts\Worker.cs" />
      <Compile Include="Assets\Resources\Scripts\PlayerController.cs" />
-     <Compile Include="Assets\WindowStartup.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
  </Reference>
