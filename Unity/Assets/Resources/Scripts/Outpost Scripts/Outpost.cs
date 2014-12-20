@@ -28,7 +28,8 @@ public abstract class Outpost : MonoBehaviour {
 	void OnMouseDown() {
 		if (ContainerWindow.ActiveWindow.gameObject.activeSelf)
 			ContainerWindow.ActiveWindow.gameObject.SetActive(false);
-		else ContainerWindow.ActiveWindow.Display(mainInventory);
+
+		ContainerWindow.ActiveWindow.Display(mainInventory);
 	}
 
 	void Update () {
